@@ -1,94 +1,120 @@
 ---
 interface Props {
-  title: string;
+    title: string;
 }
 
-const { title } = Astro.props;
+const {title} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Software Developer" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
+<head>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+            m[i].l = 1 * new Date();
+            for (var j = 0; j < document.scripts.length; j++) {
+                if (document.scripts[j].src === r) {
+                    return;
+                }
+            }
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        ym(102530028, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/102530028" style="position:absolute; left:-9999px;" alt=""/></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+    <meta charset="UTF-8"/>
+    <meta name="description" content="Software Developer"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" type="image/png" href="/favicon.png"/>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="preload"
+            as="style"
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
     />
     <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      media="print"
-      onload="this.media='all'"
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+            media="print"
+            onload="this.media='all'"
     />
     <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-      />
+        <link
+                rel="stylesheet"
+                href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        />
     </noscript>
 
     <title>{title}</title>
-  </head>
-  <body class="bg-[--background] md:px-48 lg:px-20 px-9">
-    <slot />
-  </body>
+</head>
+<body class="bg-[--background] md:px-48 lg:px-20 px-9">
+<slot/>
+</body>
 </html>
 
 <style is:global>
-  :root {
-    --background: #101010;
-    --sec: #a476ff;
-    --white: #dfdfdf;
-    --white-icon: #f3f3f398;
-    --white-icon-tr: #f3f3f310;
-  }
+    :root {
+        --background: #101010;
+        --sec: #a476ff;
+        --white: #dfdfdf;
+        --white-icon: #f3f3f398;
+        --white-icon-tr: #f3f3f310;
+    }
 
-  * {
-    font-family:
-      "montserrat",
-      -apple-system,
-      system-ui,
-      sans-serif;
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-  }
+    * {
+        font-family: "montserrat",
+        -apple-system,
+        system-ui,
+        sans-serif;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
 
-  *::selection {
-    background-color: var(--sec);
-    color: var(--background);
-  }
+    *::selection {
+        background-color: var(--sec);
+        color: var(--background);
+    }
 
-  /* Scrollbar styles */
+    /* Scrollbar styles */
 
-  ::-webkit-scrollbar {
-    width: 15px;
-  }
+    ::-webkit-scrollbar {
+        width: 15px;
+    }
 
-  ::-webkit-scrollbar-track {
-    background: var(--container);
-    border-radius: 30px;
-  }
+    ::-webkit-scrollbar-track {
+        background: var(--container);
+        border-radius: 30px;
+    }
 
-  ::-webkit-scrollbar-thumb {
-    background: var(--background);
-    border-radius: 10px;
-  }
+    ::-webkit-scrollbar-thumb {
+        background: var(--background);
+        border-radius: 10px;
+    }
 
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--pink);
-  }
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--pink);
+    }
 
-  /* Scrollbar styles for Firefox */
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: var(--line) var(--container);
-  }
+    /* Scrollbar styles for Firefox */
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: var(--line) var(--container);
+    }
 </style>
