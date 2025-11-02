@@ -2,7 +2,7 @@
 import {Image} from "astro:assets";
 import olalastore from "../../public/projects/olalastore.png";
 import bloom from "../../public/projects/bloom.png";
-import taro from "../../public/projects/taro.jpg";
+import partsi from "../../public/projects/partsi.jpg";
 import bp from "../../public/projects/bp.png";
 import {ImageMetadata} from "astro";
 
@@ -16,10 +16,17 @@ interface Project {
 
 const projects: Project[] = [
     {
+        title: "Partsi — car parts search service",
+        image: partsi as ImageMetadata,
+        preview: null,
+        status: "In development",
+        stack: ["Java 21", "Spring Modulith", "Postgres", "NextJs", "Grafana + Prometheus"]
+    },
+    {
         title: "Ola la store",
         image: olalastore as ImageMetadata,
         preview: "https://olalastore.ru",
-        status: "In Development",
+        status: "Finished",
         stack: ["Astro+React", "React", "Strapi", "Docker"]
     },
     {
@@ -30,18 +37,11 @@ const projects: Project[] = [
         stack: ["Astro", "Docker"]
     },
     {
-        title: "AI Telegram Taro",
-        image: taro as ImageMetadata,
-        preview: "https://t.me/TaroFastBot",
-        status: "Finished",
-        stack: ["Java", "Spring", "Hibirnate", "Docker"]
-    },
-    {
         title: "Debugging API for semantic pipelines",
         image: bp as ImageMetadata,
         preview: "https://dspace.cvut.cz/handle/10467/108706?locale-attribute=en",
-        status: "Bachelor Thesis",
-        stack: ["Java", "RDF", "Linked Data", "SPARQL" ,"Docker", "SPipes"]
+        status: "Bachelor Thesis - Finished",
+        stack: ["Java", "RDF", "Linked Data", "SPARQL", "Docker", "SPipes"]
     },
 ];
 ---
@@ -74,11 +74,11 @@ const projects: Project[] = [
                                 <div class="flex items-center px-3 mb-5">
                                     <div class="flex-grow">
                                         <h4 class="text-2xl font-semibold">{project.title}</h4>
-                                        <span class="py-1 text-sm text-[var(--white-icon)]">
+                                        <span class="py-1 text-sm text-[var(--sec-light)]">
                                                 {project.status}
                                             </span>
                                     </div>
-                                    <div class="flex gap-2 ml-auto">
+                                    {project.preview && (<div class="flex gap-2 ml-auto">
                                         <a
                                                 target="_blank"
                                                 href={project.preview}
@@ -94,7 +94,8 @@ const projects: Project[] = [
                                                 <path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"/>
                                             </svg>
                                         </a>
-                                    </div>
+                                    </div>)}
+
                                 </div>
                                 <div class="flex flex-row flex-wrap gap-2">
                                     {project.stack.map((tech, i) => (

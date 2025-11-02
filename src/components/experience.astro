@@ -1,24 +1,43 @@
 ---
+interface ProjectItem {
+    name: string;
+    responsibilities: string[];
+    stack?: string[];
+}
+
 interface ExperienceItem {
     period: string;
     organization: string;
     position: string;
-    responsibilities: string[];
-    stack: string[];
+    responsibilities?: string[];
+    stack?: string[];
+    projects?: ProjectItem[];
 }
 
 const experiences: ExperienceItem[] = [
     {
         period: "June 2024 - Present",
-        organization: "Clean Data LLC",
+        organization: "Clean Data LLC - Arenadata Catalog",
         position: "Developer",
-        responsibilities: [
-            "Ensuring Fault Tolerance: Designing and implementing an architecture capable of withstanding critical failures.",
-            "Test Optimization: Analyzing and improving integration and end-to-end tests, resulting in a six-fold reduction in execution time.",
-            "Algorithm Debugging: Identifying and fixing bugs in data matching algorithms, enhancing system accuracy.",
-            "Idempotency: Introducing idempotency mechanisms for correctly handling repeated operations in stateful systems.",
+        projects: [
+            {
+                name: "Data Quality Framework",
+                responsibilities: [
+                    "Designed and implemented a service for storing data quality check results in S3.",
+                    "Developed functionality for debugging data quality check algorithms.",
+                    "Represented the technical side in decision-making on integration between two data quality systems."
+                ]
+            },
+            {
+                name: "Master Data Management System",
+                responsibilities: [
+                    "Ensuring Fault Tolerance: Designing and implementing an architecture capable of withstanding critical failures.",
+                    "Test Optimization: Analyzing and improving integration and end-to-end tests, resulting in a six-fold reduction in execution time.",
+                    "Idempotency: Introducing idempotency mechanisms for correctly handling repeated operations in stateful systems."
+                ]
+            }
         ],
-        stack: ["Java 21", "Kafka", "PostgreSQL", "Redis", "Cucumber", "Testcontainers", "Docker"]
+        stack: ["Java 21", "Kafka", "PostgreSQL", "Redis", "Cucumber", "Testcontainers", "Docker", "RocksDB"]
     },
     {
         period: "June 2022 - May 2024",
@@ -27,7 +46,7 @@ const experiences: ExperienceItem[] = [
         responsibilities: [
             "Maintained two fintech products with multiple services: fixed bugs, developed new functionality, and closely collaborated with the business using Scrum methodology (communication in English).",
             "Participated in the development of a new product, where the team successfully delivered a large-scale application with multiple components and services under tight deadlines.",
-            "Played a key role in decomposing a large monolith: developed integration with Camunda and solved complex tasks, including the complete migration of Camunda communication from Java API to REST.",
+            "Played a key role in decomposing a large monolith: developed integration with Camunda and solved complex tasks, including the complete migration of Camunda communication from Java API to REST."
         ],
         stack: ["Java 11-17", "Spring", "Camunda", "RabbitMQ", "Jenkins", "PostgreSQL", "Cucumber", "Groovy Specification", "ELK"]
     },
@@ -39,7 +58,7 @@ const experiences: ExperienceItem[] = [
             "Developed an application for monitoring the status and versions of corporate applications, enabling timely tracking of IT infrastructure changes.",
             "Created financial calculators for an insurance company to optimize financial calculations.",
             "Developed an automated testing infrastructure covering analysis, test code writing, and deployment.",
-            "Participated in developing an application with customized support for FTP and SFTP protocols for a globally recognized transportation company.",
+            "Participated in developing an application with customized support for FTP and SFTP protocols for a globally recognized transportation company."
         ],
         stack: ["Java 17", "Spring", "PostgreSQL", "Maven", "TeamCity", "Cucumber"]
     },
@@ -50,7 +69,7 @@ const experiences: ExperienceItem[] = [
         responsibilities: [
             "Worked on a student portal within an internal university firm.",
             "Optimized system performance by fixing numerous bugs on both frontend and backend, significantly improving stability and performance.",
-            "Developed and integrated three services based on Camunda (BPMN) within a microservice architecture, enhancing business processes and interaction between components.",
+            "Developed and integrated three services based on Camunda (BPMN) within a microservice architecture, enhancing business processes and interaction between components."
         ],
         stack: ["Java 11-17", "JSF", "Maven", "Spring", "Camunda", "MongoDB", "PostgreSQL"]
     }
@@ -66,63 +85,85 @@ const experiences: ExperienceItem[] = [
             <h2 class="text-lg text-[var(--sec)] shiny-sec">My Experience</h2>
             <h3 class="text-4xl md:text-5xl font-medium">Timeline</h3>
         </div>
+
         <div>
             <ul class="relative pt-0 md:pt-12">
                 {experiences.map((item, index) => (
                         <li class="relative mb-10">
-                            <div class="absolute left-0 md:left-10 top-0 h-full w-[2px] bg-[#9a9a9a]"/>
+                            <div class="absolute left-0 md:left-10 top-0 h-full w-[2px] bg-[#9a9a9a]"></div>
                             <div
                                     class="
-                                          absolute
-                                          left-0
-                                          md:left-10
-                                          -translate-x-1/2
-                                          -mt-2
-                                          w-4 h-4
-                                          border-2 border-[var(--sec)]
-                                          rounded-full
-                                          bg-[#141414]"
-                            />
+                                        absolute
+                                        left-0
+                                        md:left-10
+                                        -translate-x-1/2
+                                        -mt-2
+                                        w-4 h-4
+                                        border-2 border-[var(--sec)]
+                                        rounded-full
+                                        bg-[#141414]"
+                            ></div>
 
                             <div class="ml-5 md:ml-[70px] md:w-[500px]">
                                 <div class="text-sm text-[var(--white-icon)] mb-1">
                                     {item.period}
                                 </div>
-                                <h4 class="text-xl md:text-2xl font-semibold mb-1">
+                                <h4 class="text-xl md:text-2xl font-semibold mb-1 text-[var(--sec-light)]">
                                     {item.organization}
                                 </h4>
                                 <p class="text-md text-[var(--white-icon)] mb-3">
                                     {item.position}
                                 </p>
-                                <ul class="list-disc ml-5 text-[var(--white-icon)] space-y-1 text-sm mb-3">
-                                    {item.responsibilities.map((resp, i) => (
-                                            <li>{resp}</li>
-                                    ))}
-                                </ul>
-                                <div class="flex flex-row flex-wrap gap-2">
-                                    {item.stack.map((tech, i) => (
+
+                                {!item.projects && (
+                                        <>
+                                            <ul class="list-disc ml-5 text-[var(--white-icon)] space-y-1 text-sm mb-3">
+                                                {item.responsibilities?.map((resp) => (
+                                                        <li>{resp}</li>
+                                                ))}
+                                            </ul>
+
+
+                                        </>
+                                )}
+
+                                {item.projects && (
+                                        <div class="space-y-6">
+                                            {item.projects.map((project) => (
+                                                    <div class="space-y-3">
+                                                        <h5 class="text-lg md:text-xl font-semibold">{project.name}</h5>
+
+                                                        <ul class="list-disc ml-5 text-[var(--white-icon)] space-y-1 text-sm">
+                                                            {project.responsibilities.map((resp) => (
+                                                                    <li>{resp}</li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+                                            ))}
+                                        </div>
+                                )}
+                                <div class="flex flex-row flex-wrap gap-2 mt-8">
+                                    {item.stack?.map((tech) => (
                                             <span
                                                     class="
-                                                text-sm
-                                                text-[var(--white-icon)]
-                                                hover:text-white
-                                                transition duration-300 ease-in-out
-                                                border border-[var(--white-icon-tr)]
-                                                py-2 px-3
-                                                rounded-xl
-                                                bg-[#1414149c]
-                                                hover:bg-[var(--white-icon-tr)]"
+                                                          text-sm
+                                                          text-[var(--white-icon)]
+                                                          hover:text-white
+                                                          transition duration-300 ease-in-out
+                                                          border border-[var(--white-icon-tr)]
+                                                          py-2 px-3
+                                                          rounded-xl
+                                                          bg-[#1414149c]
+                                                          hover:bg-[var(--white-icon-tr)]"
                                             >
-                                              {tech}
-                                            </span>
+                                                        {tech}
+                                                      </span>
                                     ))}
                                 </div>
                             </div>
                         </li>
-
                 ))}
             </ul>
         </div>
     </div>
 </section>
-

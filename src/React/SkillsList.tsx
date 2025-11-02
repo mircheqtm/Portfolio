@@ -57,15 +57,13 @@ const SkillsList = () => {
             "PostgreSQL, Liquibase, Caffeine Cache",
             "Redis and caching",
             "SQL query optimization",
-            "Transactions and error handling (RetryTemplate)",
             "Docker, containerization, CI/CD",
         ],
         "Frontend Development": [
             "Next.js, Astro",
             "React (Tailwind CSS, ShadCN/UI)",
             "Responsive UI development",
-            "API integrations (GraphQL, REST)",
-            "UI performance optimization",
+            "API integrations (GraphQL, REST)"
         ],
         "DevOps & Infrastructure": [
             "VPS, Docker, Docker Compose",
@@ -96,9 +94,9 @@ const SkillsList = () => {
                                 {CategoryIcons[category]}
                                 <div className="flex items-center gap-2 flex-grow justify-between">
                                     <div className="min-w-0 max-w-[200px] md:max-w-none overflow-hidden">
-                    <span className="block truncate text-[var(--white)] text-lg">
-                      {category}
-                    </span>
+                                    <span className="block truncate text-[var(--white)] text-lg">
+                                      {category}
+                                    </span>
                                     </div>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
